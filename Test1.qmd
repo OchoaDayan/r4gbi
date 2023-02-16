@@ -1,0 +1,33 @@
+---
+title: "Introduccion a R"
+author: "Dayan Ochoa Oviedo"
+date: "15/02/2023" 
+output-file: pdf_document
+---
+
+## Operaciones basicas
+
+Las operaciones de matematicas, logicas y de asignacion
+
+$$
+\hat{x} = \frac{x}{x}
+$$
+
+```{r}
+x = c(1:10, NaN, 10:-20, NaN, 27)
+xi = sum(x)/length(x)
+xi
+```
+```{r vectores con datos}
+x1 = c(1:10, NaN, 10:-20, NaN, 27)
+x1i = sum(x1, na.rm = TRUE)/length(x1)
+x1i
+```
+
+
+
+```{r}
+x = c(1:100)
+xi = sum(x)/length(x)
+xi
+```
