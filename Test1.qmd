@@ -2,7 +2,7 @@
 title: "Introduccion a R"
 author: "Dayan Ochoa Oviedo"
 date: "15/02/2023" 
-output-file: pdf_document
+output: pdf_document
 ---
 
 ## Operaciones basicas
@@ -30,4 +30,16 @@ x1i
 x = c(1:100)
 xi = sum(x)/length(x)
 xi
+```
+
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.16")
+
+```
+
+```{r}
+BiocManager::available()
+
 ```
