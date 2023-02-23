@@ -1,0 +1,43 @@
+---
+title: "Tarea_R"
+author: "Dayan Ochoa Oviedo"
+format: html
+editor: visual
+---
+
+## **Tarea**
+
+Utilizando la data `who` que se puede cargar con `data("who")`. Esta tabla recoge datos sobre casos reportados de tuberculosis en el mundo. Construya un código para que se vea la siguiente figura. Que contiene:
+
+-   Datos de niñas y niños entre 0 y 14 años.
+
+-   Datos del año 1996 en adelante (1996 - 2012).
+
+-   Geometría de nube de puntos.
+
+-   Geometría de regresión lineal.
+
+-   Ecuación de la regresión de la regresión y el coeficiente de determinación $R^2_{adj}$ años.
+
+Requiere usar las librerías `ggplot2, ggpubr, ggpmisc, dplyr, tidyverse`
+
+```{r librerias}
+library(ggplot2);library(ggpubr); library(ggpmisc); library(dplyr); library(tidyverse); library(ggpp); library(colourpicker)
+```
+
+```{r data}
+data("who")
+```
+
+```{r datos}
+
+edad = who[,c(4, 5, 12)]
+edad2 = edad[edad$year > 1995,]
+edad3 = edad2[edad2$year < 2013,]
+```
+
+```{r grafico}
+grafico= edad3 %>% ggplot(aes(x=new_sp_f014, y =new_sp_m014, color = factor(year))) + geom_point(size = 0.3) + facet_wrap(year ~. ,scales = "free") + geom_smooth(method = "lm", formula = y ~ x) + xlim(0,1000) + ylim(0,1000) + labs(y= "TB positivo en niños de 0 a 14 años", x= "TB positivo en niñas de 0 a 14 años") + stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
+               formula = y~x, parse = TRUE, label.x.npc = 2.) 
+grafico
+```
